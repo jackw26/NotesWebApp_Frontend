@@ -9,6 +9,7 @@ import {
 import { User } from '../models/user'
 import NavBarLoggedInView from './NavBarLoggedInView'
 import NavBarLoggedOutView from './NavBarLoggedOutView'
+import { Link } from 'react-router-dom'
 
 interface NavBarProps {
   loggedInUser: User | null
@@ -26,9 +27,14 @@ const NavBar = ({
   return (
     <Navbar bg='primary' variant='dark' expand='sm' sticky='top'>
       <Container>
-        <NavbarBrand>Cool Notes App</NavbarBrand>
+        <NavbarBrand as={Link} to='/'>Cool Notes App</NavbarBrand>
         <NavbarToggle aria-controls='main-navbar' />
         <NavbarCollapse id='main-navbar'>
+          <Nav>
+            <Nav.Link as={Link} to='/privacy'>
+              Privacy
+            </Nav.Link>
+          </Nav>
           <Nav className='ms-auto'>
             {loggedInUser ? (
               <NavBarLoggedInView
